@@ -1,0 +1,484 @@
+html,body{
+  height: 100%; /* 确保至少与视窗一样高 */
+  width: 100%;
+  /* min-height: 100vh; 视窗的最小高度 */
+  margin: 0; /* 移除默认边距 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* 选择整个滚动条 */
+::-webkit-scrollbar {
+  width: 12px; /* 设置滚动条宽度 */
+  background-color:#a0ecf0; /* 设置滚动条背景色 */
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(128,128,128,0.7); /* 设置滑块颜色 */
+  border-radius: 6px; /* 设置滑块边界半径 */
+  border: 3px solid #a0ecf0; /* 设置滑块边界和颜色 */
+}
+
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background-color: #a0ecf0; /* 设置轨道颜色 */
+  border-radius: 0; /* 设置轨道边界半径 */
+}
+.music-player {
+    
+    display: flex; /* 使用flex布局 */
+    flex-direction: column; /* 使子元素垂直排列 */
+    background-color: #a0ecf0; /* 音乐播放器的背景色 */
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    width: 100%; /* 宽度为100% */
+    max-width: 1200px; /* 最大宽度限制 */
+    height:100%;
+    max-height: 130px;
+    margin: auto auto; /* 居中显示 */
+    /* overflow: hidden; 隐藏溢出的内容 */
+    /* margin: auto; */
+   
+  }
+  .process-container {
+    width: 100%; /* 进度条容器的宽度 */
+    background-color: #eee; /* 进度条的背景颜色 */
+    height: 3px; /* 进度条的高度 */
+    /* position: relative; */
+    cursor: pointer;
+    /* z-index: 5; */
+}
+  .progress-bar {
+    width: 0%; /* 宽度为100% */
+    height: 3px; /* 进度条的高度 */
+    background-color: #4b1892; /* 进度条的背景色 */
+    position: relative;
+  }
+  
+  .progress-bar::after {
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #007bff;
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.3s;
+  }
+  .process-container:hover .progress-bar::after{
+    opacity: 1;
+  }
+
+ 
+  
+  .content {
+    position: relative;
+    display: flex; /* 水平排列子元素 */
+    align-items: center; /* 垂直居中子元素 */
+    justify-content: center;
+    padding: 20px; 
+  }
+  .content *{
+    margin: 0 10px;
+  }
+  .cover, .playButton, .voice, .time, .play-list {
+    display: flex; /* 使用Flexbox以便居中内容 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    flex-grow: 1; /* 子元素平均分配剩余空间 */
+  }
+  .cover {
+    --after-content: '\e669';
+    position: relative;
+    width: 80px; /* 设置正方形的宽度 */
+    height: 80px; /* 设置正方形的高度，与宽度相同以创建正方形 */
+    background-image: url('../img/bg.jpg'); 
+    background-size: cover; /* 图片覆盖整个元素，保持比例 */
+    background-position: center; /* 图片居中 */
+    border-radius: 5px; /* 如果需要的话可以设置圆角 */
+    box-sizing: border-box;
+    flex-grow: 0; /* 不允许元素增长 */
+    flex-shrink: 0; /* 不允许元素收缩 */
+    flex-basis: auto; /* 基于元素的默认尺寸 */
+  }
+  .cover:hover::after{
+    content: var(--after-content);
+    font-family: 'iconfont';
+    position: absolute; /* 绝对定位于.cover */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* 半透明黑色覆盖层 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    transition: all 0.5s ease; /* 平滑过渡效果 */
+    cursor: pointer;
+  }
+  .follow{
+    display: flex; /* 使用flex布局 */
+    flex-direction: column; /* 使子元素垂直排列 */
+    width: 125px; /* 设置正方形的宽度 */
+    height: 80px; /* 设置正方形的高度，与宽度相同以创建正方形 */
+    margin-right: 200px;
+    align-items: flex-start; 
+  }
+  .name {
+    /* margin: 0 5px; */
+    display: flex; /* 使用Flexbox以便居中内容 */
+    align-items: center; /* 垂直居中 */
+    flex-grow: 1;
+    width: 100%; /* 设置正方形的宽度 */
+    height: 40px; /* 设置正方形的高度，与宽度相同以创建正方形 */
+    /* 暂时处理 */
+    white-space: nowrap; /* 防止内容换行 */
+    overflow: hidden; /* 隐藏超出部分的内容 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+  }
+  .likes{
+    font-size: 20px;
+  }
+  .button{
+    margin: 0 10px;
+  }
+  .playButton {
+    /* 设置播放和音量按钮的样式 */
+    margin: 0 20px ;
+    flex-shrink: 0;
+  }
+  .time {
+    /* 为歌曲时间设置样式 */
+  }
+  
+  .play-list {
+    /* 为歌曲列表设置样式 */
+  }
+  .turn-red{
+    transition: color 0.2s ease; /* 平滑颜色变化 */
+    color: red;
+  }
+  .turn-red:hover {
+    color: red; /* 悬停时的颜色 */
+    cursor: pointer;
+  }
+  .turn-color {
+    transition: color 0.2s ease; /* 平滑颜色变化 */
+    color: initial; /* 初始颜色 */
+  }
+  
+  .turn-color:hover {
+    color: #c9edfc; /* 悬停时的颜色 */
+    cursor: pointer;
+  }
+  div .play-button,.pause-button{
+    font-family: "iconfont" !important;
+    font-size: 40px;
+  }
+  div .after,.prev{
+    font-family: "iconfont" !important;
+    font-size: 30px;
+  }
+  
+  /* 音量键 */
+  div .voice{
+    font-size: 20px;
+  }
+
+  .voice-column {
+    z-index: 3;
+    position: absolute;
+    /* left:200px;
+    top:-200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 250px; /* 调整为所需的高度 */
+    background-color: #a3d8f4; /* 您图片中的背景色 */
+    border-radius: 10px; /* 圆角 */
+    padding: 20px; /* 一些内边距 */
+}
+  .volume-slider {
+      position: relative;
+      height: 70%; /* 滑块的高度 */
+      width: 36px;
+      margin: 5px auto; /* 与其他元素的间距 */
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    /* appearance: none; */
+    width: 200px; /* 滑块的宽度，旋转后实际上是高度 */
+    height: 6px; /* 这实际上是轨道的宽度 */
+    transform: rotate(90deg);
+    transform-origin: bottom left; /* 将旋转轴点设置到滑块的左下角 */
+    position: absolute;
+    top: 50%; /* 设置为容器的一半高度 */
+    left: 50%; /* 设置为容器的一半宽度 */
+    margin-top: -120px; /* 向上偏移滑块宽度的一半 */
+    margin-left: -3px; 
+   
+    border-radius: 5px;
+    position: absolute;
+}
+ 
+input[type=range]::-ms-track {
+    height: 25px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112;
+    border-color: transparent; /*去除原
+    有边框*/
+    color: transparent; /*去除轨道内的竖线*/
+}
+ 
+input[type=range]::-ms-thumb {
+    border: solid 0.125em rgba(205, 224, 230, 0.5);
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-top: -5px;
+    box-shadow: 0 .125em .125em #3b4547;
+}
+ 
+input[type=range]::-ms-fill-lower {
+    /*进度条已填充的部分*/
+    height: 22px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #059CFA, white 100%, white);
+}
+ 
+input[type=range]::-ms-fill-upper {
+    /*进度条未填充的部分*/
+    height: 22px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+ 
+input[type=range]:focus::-ms-fill-lower {
+    background: linear-gradient(to right, #059CFA, white 100%, white);
+}
+ 
+input[type=range]:focus::-ms-fill-upper {
+    background: #ffffff;
+}
+
+
+  .volume-value {
+      margin: 5px 0; /* 与其他元素的间距 */
+  }
+
+  .volume-icon {
+      font-size: 30px; /* 调整图标大小 */
+  }
+  /* 音量键 */
+
+
+
+
+
+  /* 播放列表 */
+  .playlist{
+    z-index: 2;
+    display: flex;
+    position: absolute;
+    flex-direction: column; /* 使子元素垂直排列 */
+    background-color: #a0ecf0;
+    overflow-y: scroll;
+    height: 100%;
+    right: 0px;
+    /* max-height: 700px;
+    min-height: 700px; */
+    flex-grow: 1;
+    min-width: 301px;
+  
+    /* opacity: 0; */
+  }
+  .slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  .slide-out {
+    animation: slideOut 0.5s ease-out forwards;
+  }
+  .slide-up {
+    animation: slideup 0.5s ease-out forwards;
+  }
+  .slide-down {
+    animation: slidedown 0.5s ease-out forwards;
+  }
+  @keyframes slideup {
+    from{
+      /* transform: translateY(100%); 开始时，元素完全位于容器底部之下 */
+      opacity: 0; /* 可以从完全透明开始，使元素渐渐出现 */
+    }
+    to{
+      transform: translateY(0); /* 动画结束时，元素回到原位 */
+      opacity: 1; /* 结束时完全不透明 */
+    }
+  }
+  
+  @keyframes slidedown {
+    from{
+      transform: translateY(0); /* 动画结束时，元素回到原位 */
+      opacity: 1; /* 结束时完全不透明 */
+    }
+    to{
+      /* transform: translateY(100%); 开始时，元素完全位于容器底部之下 */
+      opacity: 0; /* 可以从完全透明开始，使元素渐渐出现 */
+    }
+  }
+  @keyframes slideOut {
+    from {
+      right: 0; /* 动画结束时位于容器内部，与右侧对齐 */
+      opacity: 1; /* 结束时完全不透明 */
+    }
+    to {
+      right: -100px; /* 开始于容器右侧之外 */
+      opacity: 0; /* 可以从完全透明开始 */
+    }
+  }
+  @keyframes slideIn{
+    from {
+      right: -100px; /* 开始于容器右侧之外 */
+      opacity: 0; /* 可以从完全透明开始 */
+    }
+    to {
+      right: 0; /* 动画结束时位于容器内部，与右侧对齐 */
+      opacity: 1; /* 结束时完全不透明 */
+    }
+  }
+  .playlist .header{
+    padding: 10px;
+    margin: 5px;
+  }
+  .header{
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0; /* 指定距离顶部的距离 */
+    background-color: #a0ecf0;
+    z-index: 10; /* 确保sticky元素在其他内容之上 */
+  }
+  .playlist-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .uploadButton{
+    font-size: 18px;
+  }
+  .uploadButton:hover{
+    cursor: pointer;
+  }
+  .header .head-playlist{
+    font-size:larger;
+    margin-bottom: 10px;
+  }
+  .header .song-number{
+    color: gray;
+    font-size: small;
+  }
+
+  .song-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .song-item.active{
+    background-color: rgb(128,128,128,0.4);
+  }
+  .song-item:hover{
+    background-color: rgb(128,128,128,0.4);
+  }
+  
+  .song-item .intro{
+    margin-right: 100px;
+    min-width: 110px;
+  }
+  .intro{
+    padding: 10px;
+    margin: 5px;
+  }
+  .intro *{
+    margin-bottom: 5px;
+  }
+  .song-item .show-time,.delete-button {
+    padding: 10px;
+    margin: 5px;
+  }
+  .show-time{
+    color: rgba(128, 128, 128, 0.7);
+  }
+  .delete-button{
+
+  }
+  .download:hover, .delete-button:hover{
+    cursor: pointer;
+  }
+  /* 播放列表 */
+
+
+  /* 歌词与唱片机 */
+  .upper{
+    width: 100%; /* 宽度为100% */
+    max-width: 1200px; /* 最大宽度限制 */
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    align-items: stretch;
+    justify-content: center;
+    z-index: 1;
+    
+  }
+  .lyrics-container{
+    width: 100%; /* 宽度为100% */
+    max-width: 1200px; /* 最大宽度限制 */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: url(../img/coverblur.jpg) no-repeat center;
+    /* background-size: auto 100%; */
+    background-size: cover;
+  }
+  /* 歌词与唱片机 */
+
+  /* 歌词 */
+  .lyrics-content {
+  box-sizing: border-box;
+  padding: 10px 0;
+  margin: 5px 0;;
+  max-height: 382px;
+  overflow-y: scroll;
+  color: #4b1892;
+  z-index: 12;
+  flex-grow: 1;
+  color: #fff; /* 歌词的文本颜色 */
+  font-size: 20px; /* 歌词的字体大小 */
+  text-align: center; /* 文本居中对齐 */
+  overflow: hidden; /* 隐藏超出部分 */
+  position: relative; /* 相对定位 */
+  margin: 0 auto; /* 如果需要居中容器 */
+  line-height: 1.5; /* 歌词行间距 */
+  transition: scrollTop 0.5s ease;
+  }
+  .lyrics-content p {
+    margin: 1px; /* 移除段落的默认外边距 */
+    padding: 10px 0; /* 段落的内边距，增加可读性 */
+    opacity: 0.7; /* 非当前播放歌词的透明度 */
+    transition: opacity 0.5s; /* 平滑透明度过渡 */
+    
+  }
+
+  .lyrics-content p.active {
+      opacity: 1; /* 当前播放歌词的透明度为完全不透明 */
+      font-size: 28px; /* 当前播放歌词的字体大小更大 */
+      color:aqua; /* 当前播放歌词的颜色更亮 */
+  }
+  /* 歌词 */
+

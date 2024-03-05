@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Player</title>
+<link rel="stylesheet" href="iconfont/iconfont.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/lyrics.css">
+</head>
+<body>
+
+
+
+<!-- 列表+歌词+胶片机 -->
+<div id="upper" class="upper">
+    <!-- 胶片机与歌词 -->
+    <div id='lyrics-container' class="lyrics-container">
+        <!-- 胶片机 -->
+        <div id="lyrics" class="lyrics" style="opacity: 1;">
+            <div id="app">
+                <div class="song__bg"></div>
+                <div class="song-wrap">
+                    <div class="song-disc">
+                    <div class="song-disc__bg"></div>
+                    <div id="song-disc__cover" class="song-disc__cover">
+                        <div class="song-img">
+                        <img src="img/cover.jpg" alt="" class="u-img">
+                        </div>
+                    </div>
+                    <div class="play-btn"></div>
+                    <div class="song-needle"></div>
+                    </div>
+                </div>
+                </div>
+        
+        </div>
+
+        <!-- 歌词 -->
+        <div id='lyrics-content' class="lyrics-content"></div>
+    </div>
+
+    <!-- 播放列表 -->
+    <div id='playlist' class="playlist" style="display: none;">
+
+        <div class="header">
+            <div class="playlist-container">
+                <div class="head-playlist">播放列表</div>
+            <div class="song-number">235首歌曲</div>
+            </div>
+            
+            
+        </div>
+        <br>
+    
+    </div>
+
+</div>
+
+
+<!-- 播放栏 -->
+<div class="music-player">
+    <!-- 进度条 -->
+    <div class="process-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- 其余内容 -->
+    <div id='content' class="content">
+        <!--歌曲封面 -->
+        <div id="cover" class="cover" title="收起歌曲详细页"></div>
+        <div id='follow' class="follow">
+            <!-- 歌手歌曲名 -->
+                
+            <div id='name' class="name">
+            最后一页&nbsp;-&nbsp;苏晗
+            </div>
+            <!-- 喜欢 -->
+            <div id='likes' class="likes turn-color iconfont">&#xeca1;</div>
+        </div>
+        
+        <!-- 播放 -->
+        <div class="playButton">
+            <div id="prevButton" class="button prev iconfont turn-color" title="上一首">&#xe63c;</div>
+            <div id='playButton' class="button iconfont turn-color play-button" title="播放">&#xe61c;</div>
+            <!-- <div class="button iconfont turn-color pause-button" title="暂停">&#xe626;</div> -->
+            <div id="afterButton" class="button after iconfont turn-color" title="下一首">&#xe63e;</div>
+        </div>
+        <!-- 音量 -->
+        <div id='voice-column' class="voice-column" style="opacity: 0;">
+            <div class="volume-slider">
+                <input type="range" min="0" max="100" step="1" class="slider" id="volume" orient="vertical">
+                
+            </div>
+            <div id="volume-value" class="volume-value">50%</div>
+            <div class="iconfont">&#xeca5;</div> <!-- 这是一个扬声器的字符实体 -->
+        </div>
+        <div id='voice' class="voice iconfont turn-color" title="音量">&#xeca5;</div>
+        <!-- 歌曲时间 -->
+        <div id='time' class="time">
+            00:00/04:10
+        </div>
+        <!-- 歌曲列表 -->
+        <div id='play-list' class="play-list iconfont turn-color" title="播放列表">&#xe66e;253</div>
+    </div>
+</div>
+
+
+<script src="./js/play.js"></script>
+<script src="./js/lyrics.js"></script>
+<script src="./js/audio.js"></script>
+</body>
+</html>

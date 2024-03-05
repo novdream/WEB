@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    --header-height: 3rem;
+  
+    /* 颜色变量 */
+    --title-color: #0b0a0a;
+    --text-color: #3a403d;
+    --text-color-light: #3a403d;
+    --container-color: #fafafa;
+    --container-color-alt: #f0efef;
+    --body-color: #fcfcfc;
+  
+    /* 字体变量 */
+    --body-font: 'Poppins', sans-serif;
+    --title-font: 'SimSun';
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  
+    /* 字体大小 */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+  
+    /* 间距 */
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+  }
+
+.panel-main__inner{
+    
+    background-color: none;
+
+}
+.panel-cover{
+    background:none !important;
+}
+body{
+  margin: 0 0 var(--header-height) 0;
+  padding: 0;
+  font-family: var(--body-font) !important;
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color) !important;
+  color: var(--text-color);
+  background-image:  linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/1.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); 
+}
+
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.component {
+    animation-name: floatUp;
+    animation-duration: 1s; /* 动画持续时间 */
+    animation-fill-mode: both; /* 在动画前后应用动画的起始和结束状态 */
+}
+.component:nth-child(1) { animation-delay: 0.3s; }
+.component:nth-child(2) { animation-delay: 0.6s; }
+.component:nth-child(3) { animation-delay: 0.9s; }
+.component:nth-child(4) { animation-delay: 1.2s; }
+.component:nth-child(5) { animation-delay: 1.5s; }
+.component:nth-child(6) { animation-delay: 1.8s; }
